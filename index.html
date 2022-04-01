@@ -1,101 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Park PA</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <section class="hero is-small is-link">
-      <div class="hero-body">
-        <p class="title">Park Pass</p>
-        <p class="subtitle">Plan your trip with ease!</p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Park PA</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <section class="hero is-small is-link">
+    <div class="hero-body">
+      <p class="title">Park Pass</p>
+      <p class="subtitle">Plan your trip with ease!</p>
+    </div>
+  </section>
+  <div class="tile is-ancestor">
+    <div class="tile is-parent is-vertical is-2">
+      <label class="checkbox">
+        <input type="checkbox" />
+        Test </label><label class="checkbox">
+        <input type="checkbox" />
+        Test </label><label class="checkbox">
+        <input type="checkbox" />
+        Test </label><label class="checkbox">
+        <input type="checkbox" />
+        Test
+      </label>
+    </div>
+    <div class="tile is-parent is-vertical is-10">
+      <div class="tile is-child">
+        <input class="column input is-inline is-four-fifths" type="text" placeholder="Text input" />
+        <button class="column button is-inline">Button</button>
       </div>
-    </section>
-    <div class="tile is-ancestor">
-      <div class="tile is-parent is-vertical is-2">
+      <div class="tile is-child">
         <label class="checkbox">
           <input type="checkbox" />
-          Test </label
-        ><label class="checkbox">
+          Test </label><label class="checkbox">
           <input type="checkbox" />
-          Test </label
-        ><label class="checkbox">
+          Test </label><label class="checkbox">
           <input type="checkbox" />
-          Test </label
-        ><label class="checkbox">
+          Test </label><label class="checkbox">
           <input type="checkbox" />
           Test
         </label>
       </div>
-      <div class="tile is-parent is-vertical is-10">
-        <div class="tile is-child">
-          <input
-            class="column input is-inline is-four-fifths"
-            type="text"
-            placeholder="Text input"
-          />
-          <button class="column button is-inline">Button</button>
-        </div>
-        <div class="tile is-child">
-          <label class="checkbox">
-            <input type="checkbox" />
-            Test </label
-          ><label class="checkbox">
-            <input type="checkbox" />
-            Test </label
-          ><label class="checkbox">
-            <input type="checkbox" />
-            Test </label
-          ><label class="checkbox">
-            <input type="checkbox" />
-            Test
-          </label>
-        </div>
-        <div class="tabs is-centered is-boxed">
-          <ul>
-            <li class="is-active">
-              <a>
-                <span class="icon is-small"
-                  ><i class="fas fa-image" aria-hidden="true"></i
-                ></span>
-                <span>Pictures</span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="icon is-small"
-                  ><i class="fas fa-music" aria-hidden="true"></i
-                ></span>
-                <span>Music</span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="icon is-small"
-                  ><i class="fas fa-film" aria-hidden="true"></i
-                ></span>
-                <span>Videos</span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="icon is-small"
-                  ><i class="far fa-file-alt" aria-hidden="true"></i
-                ></span>
-                <span>Documents</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+      <div class="tabs is-centered is-boxed">
+        <ul>
+          <li class="is-active">
+            <a>
+              <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+              <span>Pictures</span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+              <span>Music</span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
+              <span>Videos</span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
+              <span>Documents</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-    <script src="js/script.js"></script>
-  </body>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
 </html>
