@@ -1,17 +1,27 @@
 body {
-  background-color: #bae5f9;
+  background-color: #494440;
   height: 100vh;
+  background-image: url(https://miro.medium.com/max/960/0*vn0_IUA8v7OKkBkE.jpg);
 }
 
 .hero-body {
   background-color: #213a1b;
+  margin: 1px;
 }
 
-.hero.is-info .title {
+#hero {
   color: #56903a;
+  
 }
 
-.hero.is-info .subtitle {
+#colorName {
+  color: white;
+}
+
+#sub {
   color: #c56c39;
 }
 
+#contactUs {
+  padding: 2%;
+}
