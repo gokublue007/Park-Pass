@@ -1,18 +1,21 @@
 console.log("Park Dev Rangers");
+var parkCodes = [];
+var parkNames = [];
+var parkDictionary = [];
+var apiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
 
-function getParkData() {
-  // Create variables for both current weather & five day Open Weather Map API's
-  var apiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
-  var parkCode = 'acad';
-  var parkPullURL = `https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${apiKey}`;
+function getParkCodes() {
+  var parkPullURL = `https://developer.nps.gov/api/v1/parks?limit=500&api_key=${apiKey}`;
 
-  // Pull data and display today's weather
   $.ajax({
     url: parkPullURL,
     method: 'GET',
   }).then(function (response) {
-    console.log(response);
+    for (i=0; i<response.data.length; i++) {
+      parkCodes.push(response.data[i].parkCode);
+      parkNames.push(response.data[i].fullName);
+    }
   })
 }
 
-getParkData();
+getParkCodes();
