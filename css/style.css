@@ -1,4 +1,17 @@
 body {
-  background-color: #c56c39;
+  background-color: #bae5f9;
   height: 100vh;
 }
+
+.hero-body {
+  background-color: #213a1b;
+}
+
+.hero.is-info .title {
+  color: #56903a;
+}
+
+.hero.is-info .subtitle {
+  color: #c56c39;
+}
+

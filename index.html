@@ -1,86 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Park PA</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="css/style.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Park PA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"/>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  </head>
+  <body>
+    <section class="hero is-small is-info ">
+      <div class="hero-body">
+        <h1 class="title has-text-centered" class="colorName" >Park Pass</h1>
+        <p class="subtitle has-text-centered" class="colorName" >Plan your trip with ease!</p>
+      </div>
+    </section>
 
-<body>
-  <section class="hero is-small is-link">
-    <div class="hero-body">
-      <p class="title">Park Pass</p>
-      <p class="subtitle">Plan your trip with ease!</p>
-    </div>
-  </section>
-  <div class="tile is-ancestor">
-    <div class="tile is-parent is-vertical is-2">
-      <label class="checkbox">
-        <input type="checkbox" />
-        Test </label><label class="checkbox">
-        <input type="checkbox" />
-        Test </label><label class="checkbox">
-        <input type="checkbox" />
-        Test </label><label class="checkbox">
-        <input type="checkbox" />
-        Test
-      </label>
-    </div>
-    <div class="tile is-parent is-vertical is-10">
-      <div class="tile is-child">
-        <input class="column input is-inline is-four-fifths" type="text" placeholder="Text input" />
-        <button class="column button is-inline">Button</button>
-      </div>
-      <div class="tile is-child">
-        <label class="checkbox">
-          <input type="checkbox" />
-          Test </label><label class="checkbox">
-          <input type="checkbox" />
-          Test </label><label class="checkbox">
-          <input type="checkbox" />
-          Test </label><label class="checkbox">
-          <input type="checkbox" />
-          Test
-        </label>
-      </div>
-      <div class="tabs is-centered is-boxed">
-        <ul>
-          <li class="is-active">
-            <a>
-              <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
-              <span>Pictures</span>
-            </a>
-          </li>
-          <li>
-            <a>
-              <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-              <span>Music</span>
-            </a>
-          </li>
-          <li>
-            <a>
-              <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
-              <span>Videos</span>
-            </a>
-          </li>
-          <li>
-            <a>
-              <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-              <span>Documents</span>
-            </a>
-          </li>
-        </ul>
+    <aside>
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <h2 class="title has-text-centered">WELCOME</h2>
+          <p class="subtitle has-text-centered">Please enter National Parks you would like information on!</p>
+          <input class="input is-success" class="input" type="text" placeholder="Search">
+          <button class="button is-rounded is-success ">Primary</button>
+        </input>
+        </article>
       </div>
     </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="js/script.js"></script>
-</body>
+    </aside>
+    
+    <main>
+        <div class="tile is-ancestor">
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+        <p class="title">Saved Content</p>
+        <p class="subtitle">With some content</p>
+        <div class="content">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p> 
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p> 
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p> 
+        </div>
+      </article>
+    </div>
+    <div class="tile is-parent is-8">
+      <article class="tile is-child box">
+        <p class="title">Search Results</p>
+        <p class="subtitle">With some content</p>
+        <div class="content">
+          <div class="tabs is-centered is-boxed">
+            <ul>
+              <li class="is-active">
+                <a>
+                  <span class="icon is-small"
+                    ><i class="fas fa-hiking"></i></i></i
+                  ></span>
+                  <span>Hiking</span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span class="icon is-small"
+                    ><i class="fas fa-info-circle"></i></i
+                  ></span>
+                  <span>Park Info</span>
+                </a>
+              </li>              
+            </ul>
+          </div> 
+      </article>
+    </div>
+    </main>
 
+    <footer></footer>
+
+    <script src="js/script.js"></script>
+  </body>
 </html>
