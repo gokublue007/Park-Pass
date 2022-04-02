@@ -53,10 +53,14 @@ function pullParkData() {
     }
     parkHomepageLink = response.data[0].url;
     parkImageLink = response.data[0].images[0].url;
+    
     // Storing latitude and longitude of park to be used in nearby hikes API
     parkLatitude = response.data[0].latitude;
     parkLongitude = response.data[0].longitude;
+
+    // Clear page before showing new results
     clearPage()
+
     // Add image to page display
     var iconElement = $("<img>");
     iconElement.attr("src", parkImageLink);
