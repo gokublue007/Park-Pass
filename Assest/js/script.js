@@ -10,7 +10,7 @@ var parkInfoContent = $('#park-info-content');
 var parkLatitude;
 var parkLongitude;
 var parkCode;
-var chosenPark; ``
+var chosenPark;
 var parkEntryFee;
 var parkImageLink;
 var parkHomepageLink;
@@ -120,3 +120,9 @@ function runParkSearch(event) {
 }
 
 searchParkButtonEl.on("click", runParkSearch)
+
+$( function() {
+    $( "#tags" ).autocomplete({
+    source: parkNameList
+  });
+} );
