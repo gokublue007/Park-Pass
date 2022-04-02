@@ -59,6 +59,11 @@ function pullParkData() {
     iconElement.attr("src", parkImageLink);
     parkInfoContent.append(iconElement);
 
+    // add national park name to display
+    var nameElement = $("<h2>");
+    nameElement.text(chosenPark);
+    parkInfoContent.append(nameElement);
+
   })
 }
 
@@ -80,7 +85,7 @@ function getParkNamesCodes() {
 }
 
 function hikingTrails() {
-  fetch(`https://mighty-headland-78923.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${inputText}&key=${googleApiKey}`, {
+  fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${inputText}&key=${googleApiKey}`, {
     method: 'GET',
   })
     .then(function (response) {
@@ -91,7 +96,7 @@ function hikingTrails() {
     });
 }
 
-hikingTrails();
+// hikingTrails();
 
 getParkNamesCodes();
 
