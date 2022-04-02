@@ -28,6 +28,18 @@ function pullParkData() {
     method: 'GET',
   }).then(function (response) {
     console.log(response);
+    var designation = response.data[0].designation;
+    // Set entryFee variable to cost of entry if > 0, to text "Free Fee Park" if there is no entry fee
+    var entryFee;
+    if (response.data[0].entranceFees[0].cost == 0) {
+      entryFee = response.data[0].entranceFees[0].title;
+      console.log(entryFee);
+    } else {
+      entryFee = response.data[0].entranceFees[0].cost;
+      console.log(entryFee);
+    }
+
+
   })
 }
 
