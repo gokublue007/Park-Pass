@@ -1,5 +1,6 @@
 var inputTextBox = $(".input");
 var searchParkButtonEl = $("#searchParkButton");
+var clearSavedParksButtonEl = $("#clearSavedParksButton");
 var parkCodeList = [];
 var parkNameList = [];
 var NPSApiKey = "TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ";
@@ -31,17 +32,48 @@ function findParkCode(chosenPark) {
   }
 }
 
-function saveParkName(parkName) {
+function getSavedParks() {
   var storedSavedParkNames = localStorage.getItem("savedParkNames");
   console.log("storedSavedParkNames: ", storedSavedParkNames);
   var savedParkNames = [];
   if (storedSavedParkNames) {
     savedParkNames = JSON.parse(storedSavedParkNames);
   }
-  console.log("Saved Park Names: ", savedParkNames);
-  savedParkNames = savedParkNames.concat(parkName);
-  localStorage.setItem("savedParkNames", JSON.stringify(savedParkNames));
+  return savedParkNames;
 }
+
+function saveParkName(parkName) {
+  var savedParkNames = getSavedParks();
+  console.log("Saved Park Names: ", savedParkNames);
+  var alreadySaved = savedParkNames.includes(parkName);
+  if (!alreadySaved) {
+    savedParkNames = savedParkNames.concat(parkName);
+    localStorage.setItem("savedParkNames", JSON.stringify(savedParkNames));
+  }
+}
+
+function populateSavedContent() {
+  console.log("Populate Saved Content");
+  var savedParkNames = getSavedParks();
+  if (savedParkNames.length !== 0) {
+    $("#savedParks").empty();
+    savedParkNames.forEach(function (parkName) {
+      var parkBtn = $("<button>");
+      parkBtn.text(parkName);
+      parkBtn.attr("id", parkName);
+      parkBtn.addClass("button");
+      parkBtn.addClass("wrapButtonText");
+      $("#savedParks").append(parkBtn);
+    });
+  }
+}
+
+function clearSavedParks() {
+  console.log("Clear Saved Parks Function");
+}
+
+// Populate saved park names from local storage on page load
+populateSavedContent();
 
 // This function will be executed upon clicking the search button
 // This function will pull the necessary park data to then be displayed under the Park Info tab
@@ -89,6 +121,7 @@ function pullParkData() {
 
     var parkFullName = response.data[0].fullName;
     saveParkName(parkFullName);
+    populateSavedContent();
   });
 }
 
