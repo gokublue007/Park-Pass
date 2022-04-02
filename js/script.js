@@ -2,7 +2,7 @@ var inputTextBox = $('.input');
 var searchParkButtonEl = $("#searchParkButton");
 var parkCodeList = [];
 var parkNameList = [];
-var apiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
+var NPSApiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
 var googleApiKey = 'AIzaSyA_Szh6txcLm9SOSbuZV-CyqKVbqljMkTM'
 var parkCode;
 var inputText = "rocky mountain national park";
@@ -28,7 +28,7 @@ function findParkCode(chosenPark) {
 // This function will be executed upon clicking the search button
 // This function will pull the necessary park data to then be displayed under the Park Info tab
 function pullParkData() {
-  var parkPullURL = `https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${apiKey}`;
+  var parkPullURL = `https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${NPSApiKey}`;
   $.ajax({
     url: parkPullURL,
     method: 'GET',
@@ -55,7 +55,7 @@ function pullParkData() {
 
 // Function pulls data from NPS API and stores park names and codes to be used later
 function getParkNamesCodes() {
-  var allParksURL = `https://developer.nps.gov/api/v1/parks?limit=500&api_key=${apiKey}`;
+  var allParksURL = `https://developer.nps.gov/api/v1/parks?limit=500&api_key=${NPSApiKey}`;
   $.ajax({
     url: allParksURL,
     method: 'GET',
