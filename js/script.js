@@ -2,8 +2,10 @@
 var parkCodeList = [];
 var parkNameList = [];
 var apiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
+var googleApiKey = 'AIzaSyA_Szh6txcLm9SOSbuZV-CyqKVbqljMkTM'
 var parkCode;
-var inputText = "Abraham Lincoln Birthplace National Historical Park";
+var inputText = "rocky mountain national park";
+var hikingContent = $('#hiking-content');
 
 // This function will take the input the user types into the search box, find the spot in the parkNamees array that matches the input and return the corresponding park code from the 
 // parkCodes array
@@ -49,4 +51,19 @@ function getParkNamesCodes() {
   // console.log(parkCodeList);
 }
 
+function hikingTrails() {
+  fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${inputText}&key=${googleApiKey}`, {
+    method: 'GET',
+  })
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (trailData) {
+    console.log(trailData)
+  });
+}
+
+hikingTrails();
+
 getParkNamesCodes();
+
