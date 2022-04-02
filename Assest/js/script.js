@@ -57,6 +57,7 @@ function pullParkData() {
     // Add image to page display
     var iconElement = $("<img>");
     iconElement.attr("src", parkImageLink);
+    iconElement.attr("class", "imgOne");
     parkInfoContent.append(iconElement);
 
     // add national park name to display

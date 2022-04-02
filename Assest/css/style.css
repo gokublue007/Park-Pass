@@ -30,3 +30,8 @@ body {
 #contactUs {
   padding: 1%;
 }
+
+.imgOne {
+    max-height: 250px;
+    max-width: 100%;
+}
