@@ -4,7 +4,7 @@ var parkCodeList = [];
 var parkNameList = [];
 var NPSApiKey = "TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ";
 var googleApiKey = "AIzaSyA_Szh6txcLm9SOSbuZV-CyqKVbqljMkTM";
-var inputText = "rocky mountain national park";
+// var inputText = "rocky mountain national park";
 var hikingContent = $("#hiking-content");
 var parkInfoContent = $("#park-info-content");
 var parkLatitude;
@@ -116,9 +116,10 @@ function getParkNamesCodes() {
   // console.log(parkCodeList);
 }
 
-function hikingTrails() {
+// Function pulls data from google maps api
+function hikingTrails(park) {
   fetch(
-    `https://mighty-headland-78923.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${inputText}&key=${googleApiKey}`,
+    `https://mighty-headland-78923.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${park}&key=${googleApiKey}`,
     {
       method: "GET",
     }
@@ -128,10 +129,24 @@ function hikingTrails() {
     })
     .then(function (trailData) {
       console.log(trailData);
+      displayTrails(trailData);
     });
 }
 
-hikingTrails();
+// Function displays trail list
+function displayTrails(trails) {
+  var trailList = $('<ul>');
+  hikingContent.append(trailList);
+  var listItem = $('<a>');
+  listItem.text(trails.results[3].name);
+  listItem.attr('href', 'https://www.google.com/maps/@' + trails.results[3].geometry.location.lat + ',' + trails.results[3].geometry.location.lng + ',20z')
+  .attr('target', '_blank');
+  trailList.append(listItem);
+
+  // Currently working on for loop to display all trails.
+}
+
+// hikingTrails();
 
 getParkNamesCodes();
 
@@ -140,6 +155,7 @@ function runParkSearch(event) {
   chosenPark = inputTextBox.val();
   findParkCode(chosenPark);
   pullParkData();
+  hikingTrails(chosenPark);
 }
 
 searchParkButtonEl.on("click", runParkSearch);
@@ -149,3 +165,6 @@ $(function () {
     source: parkNameList,
   });
 });
+
+// Hides list of hiking trails until Hiking tab is called
+hikingContent.attr('style', 'display: none');
