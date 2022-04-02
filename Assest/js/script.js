@@ -75,7 +75,7 @@ function getParkNamesCodes() {
 }
 
 function hikingTrails() {
-  fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${inputText}&key=${googleApiKey}`, {
+  fetch(`https://mighty-headland-78923.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${inputText}&key=${googleApiKey}`, {
     method: 'GET',
   })
   .then(function (response) {
@@ -86,7 +86,7 @@ function hikingTrails() {
   });
 }
 
-// hikingTrails();
+hikingTrails();
 
 getParkNamesCodes();
 
