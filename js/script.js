@@ -1,4 +1,5 @@
 // var inputTextBox = $('.input');
+var searchParkButtonEl = $("#searchParkButton");
 var parkCodeList = [];
 var parkNameList = [];
 var apiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
@@ -9,10 +10,10 @@ var inputText = "Abraham Lincoln Birthplace National Historical Park";
 // parkCodes array
 function findParkCode() {
   // Create variable that has park code pulled from array based on selection from dropdown
-  for (i=0; i<parkNameList.length; i++) {
+  for (i = 0; i < parkNameList.length; i++) {
     if (inputText == parkNameList[i]) {
       parkCode = parkCodeList[i];
-      console.log(parkCode);
+      // console.log(parkCode);
       break
     }
   }
@@ -38,15 +39,20 @@ function getParkNamesCodes() {
     method: 'GET',
   }).then(function (response) {
     // console.log(response);
-    for (i=0; i<response.data.length; i++) {
+    for (i = 0; i < response.data.length; i++) {
       parkCodeList.push(response.data[i].parkCode);
       parkNameList.push(response.data[i].fullName);
     }
-    findParkCode();
-    pullParkData();
   })
   // console.log(parkNameList);
   // console.log(parkCodeList);
 }
 
 getParkNamesCodes();
+
+function runParkSearch() {
+  findParkCode();
+  pullParkData();
+}
+
+searchParkButtonEl.on("click", runParkSearch)
