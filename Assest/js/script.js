@@ -43,7 +43,7 @@ function pullParkData() {
     console.log(response);
     // Set entryFee variable to cost of entry if > 0, to text "Free Fee Park" if there is no entry fee
     if (response.data[0].entranceFees[0].cost == 0) {
-      parkEntryFee = response.data[0].entranceFees[0].title;
+      parkEntryFee = "Entrance to this park is free!";
       // console.log(parkEntryFee);
     } else {
       parkEntryFee = response.data[0].entranceFees[0].cost;
@@ -70,6 +70,11 @@ function pullParkData() {
     linkElement.attr("href", parkHomepageLink);
     linkElement.html(parkHomepageLink);
     parkInfoContent.append(linkElement);
+
+    // add national park fee to display
+    var feeDisplayElement = $("<p>");
+    feeDisplayElement.html("Entrance Fee: " + parkEntryFee);
+    parkInfoContent.append(feeDisplayElement);
 
   })
 }
