@@ -1,7 +1,10 @@
+* {
+  padding: 2%;
+}
+
 body {
   background-color: #494440;
-  height: 100vh;
-  background-image: url(../img/261669-national-parks-wallpaper.jpg);
+  background-image: url(../img/93639-jasper-national-park-hd-hd-desktop-wallpaper.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -25,5 +28,5 @@ body {
 }
 
 #contactUs {
-  padding: 2%;
+  padding: 1%;
 }
