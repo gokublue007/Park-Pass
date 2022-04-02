@@ -1,4 +1,4 @@
-// var inputTextBox = $('.input');
+var inputTextBox = $('.input');
 var searchParkButtonEl = $("#searchParkButton");
 var parkCodeList = [];
 var parkNameList = [];
@@ -7,14 +7,14 @@ var parkCode;
 var parkLatitude;
 var parkLongitude;
 // Place holder for input text until we get that functionally working
-var inputText = "Abraham Lincoln Birthplace National Historical Park";
+// var inputText = "Abraham Lincoln Birthplace National Historical Park";
 
 // This function will take the input the user types into the search box, find the spot in the parkNamees array that matches the input and return the corresponding park code from the 
 // parkCodes array
-function findParkCode() {
+function findParkCode(chosenPark) {
   // Create variable that has park code pulled from array based on selection from dropdown
   for (i = 0; i < parkNameList.length; i++) {
-    if (inputText == parkNameList[i]) {
+    if (chosenPark == parkNameList[i]) {
       parkCode = parkCodeList[i];
       // console.log(parkCode);
       break
@@ -40,8 +40,8 @@ function pullParkData() {
       parkEntryFee = response.data[0].entranceFees[0].cost;
       // console.log(parkEntryFee);
     }
-    var parkHomepageLink =  response.data[0].url;
-    var parkImageLink =  response.data[0].images[0].url;
+    var parkHomepageLink = response.data[0].url;
+    var parkImageLink = response.data[0].images[0].url;
     // Storing latitude and longitude of park to be used in nearby hikes API
     parkLatitude = response.data[0].latitude;
     parkLongitude = response.data[0].longitude;
@@ -69,8 +69,10 @@ function getParkNamesCodes() {
 
 getParkNamesCodes();
 
-function runParkSearch() {
-  findParkCode();
+function runParkSearch(event) {
+  event.preventDefault();
+  var chosenPark = inputTextBox.val();
+  findParkCode(chosenPark);
   pullParkData();
 }
 
