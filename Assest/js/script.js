@@ -5,7 +5,6 @@ var parkCodeList = [];
 var parkNameList = [];
 var NPSApiKey = "TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ";
 var googleApiKey = "AIzaSyA_Szh6txcLm9SOSbuZV-CyqKVbqljMkTM";
-// var inputText = "rocky mountain national park";
 var hikingContent = $("#hiking-content");
 var parkInfoContent = $("#park-info-content");
 var parkLatitude;
@@ -168,15 +167,17 @@ function hikingTrails(park) {
 
 // Function displays trail list
 function displayTrails(trails) {
-  var trailList = $('<ul>');
-  hikingContent.append(trailList);
-  var listItem = $('<a>');
-  listItem.text(trails.results[3].name);
-  listItem.attr('href', 'https://www.google.com/maps/@' + trails.results[3].geometry.location.lat + ',' + trails.results[3].geometry.location.lng + ',20z')
-  .attr('target', '_blank');
-  trailList.append(listItem);
+  for (var i = 0; i < trails.results.length; i++) {
+    var listItem = $('<p>'); 
+    listItem.addClass('custom-trail');   
+    hikingContent.append(listItem);
 
-  // Currently working on for loop to display all trails.
+    var trailLink = $('<a>');
+    listItem.append(trailLink);
+    trailLink.text(trails.results[i].name);
+    trailLink.attr('href', 'https://www.google.com/maps/@' + trails.results[i].geometry.location.lat + ',' + trails.results[i].geometry.location.lng + ',20z')
+    .attr('target', '_blank');    
+  }
 }
 
 // hikingTrails();
