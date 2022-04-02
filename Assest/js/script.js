@@ -64,6 +64,11 @@ function pullParkData() {
     nameElement.text(chosenPark);
     parkInfoContent.append(nameElement);
 
+    // add national park name to display
+    // var nameElement = $("<h2>");
+    // nameElement.text(chosenPark);
+    // parkInfoContent.append(nameElement);
+
   })
 }
 
