@@ -6,13 +6,15 @@ var NPSApiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
 var googleApiKey = 'AIzaSyA_Szh6txcLm9SOSbuZV-CyqKVbqljMkTM'
 var inputText = "rocky mountain national park";
 var hikingContent = $('#hiking-content');
+var parkInfoContent = $('#park-info-content');
 var parkLatitude;
 var parkLongitude;
 var parkCode;
-var chosenPark;
+var chosenPark; ``
 var parkEntryFee;
 var parkImageLink;
 var parkHomepageLink;
+
 
 // Place holder for input text until we get that functionally working
 // var inputText = "Abraham Lincoln Birthplace National Historical Park";
@@ -52,7 +54,10 @@ function pullParkData() {
     // Storing latitude and longitude of park to be used in nearby hikes API
     parkLatitude = response.data[0].latitude;
     parkLongitude = response.data[0].longitude;
-
+    // Add image to page display
+    var iconElement = $("<img>");
+    iconElement.attr("src", parkImageLink);
+    parkInfoContent.append(iconElement);
 
   })
 }
@@ -70,7 +75,7 @@ function getParkNamesCodes() {
       parkNameList.push(response.data[i].fullName);
     }
   })
-  // console.log(parkNameList);
+  console.log(parkNameList);
   // console.log(parkCodeList);
 }
 
@@ -78,12 +83,12 @@ function hikingTrails() {
   fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${inputText}&key=${googleApiKey}`, {
     method: 'GET',
   })
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (trailData) {
-    console.log(trailData)
-  });
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (trailData) {
+      console.log(trailData)
+    });
 }
 
 // hikingTrails();
