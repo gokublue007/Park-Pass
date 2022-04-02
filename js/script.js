@@ -4,6 +4,9 @@ var parkCodeList = [];
 var parkNameList = [];
 var apiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
 var parkCode;
+var parkLatitude;
+var parkLongitude;
+// Place holder for input text until we get that functionally working
 var inputText = "Abraham Lincoln Birthplace National Historical Park";
 
 // This function will take the input the user types into the search box, find the spot in the parkNamees array that matches the input and return the corresponding park code from the 
@@ -28,16 +31,20 @@ function pullParkData() {
     method: 'GET',
   }).then(function (response) {
     console.log(response);
-    var designation = response.data[0].designation;
     // Set entryFee variable to cost of entry if > 0, to text "Free Fee Park" if there is no entry fee
-    var entryFee;
+    var parkEntryFee;
     if (response.data[0].entranceFees[0].cost == 0) {
-      entryFee = response.data[0].entranceFees[0].title;
-      console.log(entryFee);
+      parkEntryFee = response.data[0].entranceFees[0].title;
+      // console.log(parkEntryFee);
     } else {
-      entryFee = response.data[0].entranceFees[0].cost;
-      console.log(entryFee);
+      parkEntryFee = response.data[0].entranceFees[0].cost;
+      // console.log(parkEntryFee);
     }
+    var parkHomepageLink =  response.data[0].url;
+    var parkImageLink =  response.data[0].images[0].url;
+    // Storing latitude and longitude of park to be used in nearby hikes API
+    parkLatitude = response.data[0].latitude;
+    parkLongitude = response.data[0].longitude;
 
 
   })
