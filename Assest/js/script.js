@@ -4,11 +4,16 @@ var parkCodeList = [];
 var parkNameList = [];
 var NPSApiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
 var googleApiKey = 'AIzaSyA_Szh6txcLm9SOSbuZV-CyqKVbqljMkTM'
-var parkCode;
 var inputText = "rocky mountain national park";
 var hikingContent = $('#hiking-content');
 var parkLatitude;
 var parkLongitude;
+var parkCode;
+var chosenPark;
+var parkEntryFee;
+var parkImageLink;
+var parkHomepageLink;
+
 // Place holder for input text until we get that functionally working
 // var inputText = "Abraham Lincoln Birthplace National Historical Park";
 
@@ -35,7 +40,6 @@ function pullParkData() {
   }).then(function (response) {
     console.log(response);
     // Set entryFee variable to cost of entry if > 0, to text "Free Fee Park" if there is no entry fee
-    var parkEntryFee;
     if (response.data[0].entranceFees[0].cost == 0) {
       parkEntryFee = response.data[0].entranceFees[0].title;
       // console.log(parkEntryFee);
@@ -43,8 +47,8 @@ function pullParkData() {
       parkEntryFee = response.data[0].entranceFees[0].cost;
       // console.log(parkEntryFee);
     }
-    var parkHomepageLink = response.data[0].url;
-    var parkImageLink = response.data[0].images[0].url;
+    parkHomepageLink = response.data[0].url;
+    parkImageLink = response.data[0].images[0].url;
     // Storing latitude and longitude of park to be used in nearby hikes API
     parkLatitude = response.data[0].latitude;
     parkLongitude = response.data[0].longitude;
@@ -82,13 +86,13 @@ function hikingTrails() {
   });
 }
 
-hikingTrails();
+// hikingTrails();
 
 getParkNamesCodes();
 
 function runParkSearch(event) {
   event.preventDefault();
-  var chosenPark = inputTextBox.val();
+  chosenPark = inputTextBox.val();
   findParkCode(chosenPark);
   pullParkData();
 }
