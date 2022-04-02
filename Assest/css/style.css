@@ -16,7 +16,6 @@ body {
 
 #hero {
   color: #56903a;
-  
 }
 
 #colorName {
@@ -32,6 +31,11 @@ body {
 }
 
 .imgOne {
-    max-height: 250px;
-    max-width: 100%;
+  max-height: 250px;
+  max-width: 100%;
+}
+
+.wrapButtonText {
+  height: max-content;
+  white-space: inherit;
 }
