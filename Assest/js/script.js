@@ -64,10 +64,11 @@ function pullParkData() {
     nameElement.text(chosenPark);
     parkInfoContent.append(nameElement);
 
-    // add national park name to display
-    // var nameElement = $("<h2>");
-    // nameElement.text(chosenPark);
-    // parkInfoContent.append(nameElement);
+    // add national park homepage link to display
+    var linkElement = $("<a>");
+    linkElement.attr("href", parkHomepageLink);
+    linkElement.html(parkHomepageLink);
+    parkInfoContent.append(linkElement);
 
   })
 }
@@ -101,7 +102,7 @@ function hikingTrails() {
     });
 }
 
-// hikingTrails();
+hikingTrails();
 
 getParkNamesCodes();
 
