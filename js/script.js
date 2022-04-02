@@ -3,7 +3,10 @@ var searchParkButtonEl = $("#searchParkButton");
 var parkCodeList = [];
 var parkNameList = [];
 var apiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
+var googleApiKey = 'AIzaSyA_Szh6txcLm9SOSbuZV-CyqKVbqljMkTM'
 var parkCode;
+var inputText = "rocky mountain national park";
+var hikingContent = $('#hiking-content');
 var parkLatitude;
 var parkLongitude;
 // Place holder for input text until we get that functionally working
@@ -66,6 +69,20 @@ function getParkNamesCodes() {
   // console.log(parkNameList);
   // console.log(parkCodeList);
 }
+
+function hikingTrails() {
+  fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${inputText}&key=${googleApiKey}`, {
+    method: 'GET',
+  })
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (trailData) {
+    console.log(trailData)
+  });
+}
+
+hikingTrails();
 
 getParkNamesCodes();
 
