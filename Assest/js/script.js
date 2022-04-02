@@ -1,23 +1,28 @@
-// var inputTextBox = $('.input');
+var inputTextBox = $('.input');
 var searchParkButtonEl = $("#searchParkButton");
 var parkCodeList = [];
 var parkNameList = [];
-var apiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
+var NPSApiKey = 'TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ';
 var googleApiKey = 'AIzaSyA_Szh6txcLm9SOSbuZV-CyqKVbqljMkTM'
-var parkCode;
 var inputText = "rocky mountain national park";
 var hikingContent = $('#hiking-content');
 var parkLatitude;
 var parkLongitude;
+var parkCode;
+var chosenPark;
+var parkEntryFee;
+var parkImageLink;
+var parkHomepageLink;
+
 // Place holder for input text until we get that functionally working
-var inputText = "Abraham Lincoln Birthplace National Historical Park";
+// var inputText = "Abraham Lincoln Birthplace National Historical Park";
 
 // This function will take the input the user types into the search box, find the spot in the parkNamees array that matches the input and return the corresponding park code from the 
 // parkCodes array
-function findParkCode() {
+function findParkCode(chosenPark) {
   // Create variable that has park code pulled from array based on selection from dropdown
   for (i = 0; i < parkNameList.length; i++) {
-    if (inputText == parkNameList[i]) {
+    if (chosenPark == parkNameList[i]) {
       parkCode = parkCodeList[i];
       // console.log(parkCode);
       break
@@ -28,14 +33,13 @@ function findParkCode() {
 // This function will be executed upon clicking the search button
 // This function will pull the necessary park data to then be displayed under the Park Info tab
 function pullParkData() {
-  var parkPullURL = `https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${apiKey}`;
+  var parkPullURL = `https://developer.nps.gov/api/v1/parks?parkCode=${parkCode}&api_key=${NPSApiKey}`;
   $.ajax({
     url: parkPullURL,
     method: 'GET',
   }).then(function (response) {
     console.log(response);
     // Set entryFee variable to cost of entry if > 0, to text "Free Fee Park" if there is no entry fee
-    var parkEntryFee;
     if (response.data[0].entranceFees[0].cost == 0) {
       parkEntryFee = response.data[0].entranceFees[0].title;
       // console.log(parkEntryFee);
@@ -43,8 +47,8 @@ function pullParkData() {
       parkEntryFee = response.data[0].entranceFees[0].cost;
       // console.log(parkEntryFee);
     }
-    var parkHomepageLink =  response.data[0].url;
-    var parkImageLink =  response.data[0].images[0].url;
+    parkHomepageLink = response.data[0].url;
+    parkImageLink = response.data[0].images[0].url;
     // Storing latitude and longitude of park to be used in nearby hikes API
     parkLatitude = response.data[0].latitude;
     parkLongitude = response.data[0].longitude;
@@ -55,7 +59,7 @@ function pullParkData() {
 
 // Function pulls data from NPS API and stores park names and codes to be used later
 function getParkNamesCodes() {
-  var allParksURL = `https://developer.nps.gov/api/v1/parks?limit=500&api_key=${apiKey}`;
+  var allParksURL = `https://developer.nps.gov/api/v1/parks?limit=500&api_key=${NPSApiKey}`;
   $.ajax({
     url: allParksURL,
     method: 'GET',
@@ -82,12 +86,14 @@ function hikingTrails() {
   });
 }
 
-hikingTrails();
+// hikingTrails();
 
 getParkNamesCodes();
 
-function runParkSearch() {
-  findParkCode();
+function runParkSearch(event) {
+  event.preventDefault();
+  chosenPark = inputTextBox.val();
+  findParkCode(chosenPark);
   pullParkData();
 }
 
