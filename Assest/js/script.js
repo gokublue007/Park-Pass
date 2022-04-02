@@ -18,6 +18,12 @@ var parkHomepageLink;
 // Place holder for input text until we get that functionally working
 // var inputText = "Abraham Lincoln Birthplace National Historical Park";
 
+// Clears previous search results when new search is made
+function clearPage() {
+  hikingContent.empty();
+  parkInfoContent.empty();
+}
+
 // This function will take the input the user types into the search box, find the spot in the parkNamees array that matches the input and return the corresponding park code from the
 // parkCodes array
 function findParkCode(chosenPark) {
@@ -65,6 +71,7 @@ function pullParkData() {
     // Storing latitude and longitude of park to be used in nearby hikes API
     parkLatitude = response.data[0].latitude;
     parkLongitude = response.data[0].longitude;
+    clearPage()
     // Add image to page display
     var iconElement = $("<img>");
     iconElement.attr("src", parkImageLink);
