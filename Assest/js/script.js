@@ -7,6 +7,7 @@ var NPSApiKey = "TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ";
 var googleApiKey = "AIzaSyA_Szh6txcLm9SOSbuZV-CyqKVbqljMkTM";
 var hikingContent = $("#hiking-content");
 var parkInfoContent = $("#park-info-content");
+var savedSearchButtonEl = $(".savedSearch");
 var parkLatitude;
 var parkLongitude;
 var parkCode;
@@ -67,7 +68,9 @@ function populateSavedContent() {
       parkBtn.attr("id", parkName);
       parkBtn.addClass("button m-1");
       parkBtn.addClass("wrapButtonText");
+      parkBtn.addClass("savedSearch");
       $("#savedParks").append(parkBtn);
+      $(".savedSearch").on("click", savedParkSearch);
     });
   }
 }
@@ -200,6 +203,14 @@ function runParkSearch(event) {
 }
 
 searchParkButtonEl.on("click", runParkSearch);
+
+function savedParkSearch(event) {
+  event.preventDefault();
+  chosenPark = event.target.innerText;
+  findParkCode(chosenPark);
+  pullParkData();
+  hikingTrails(chosenPark);
+}
 
 $(function () {
   $("#tags").autocomplete({
