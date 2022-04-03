@@ -37,7 +37,7 @@ function findParkCode(chosenPark) {
     }
   }
 }
-
+//gets list of saved park names from local storage
 function getSavedParks() {
   var storedSavedParkNames = localStorage.getItem("savedParkNames");
   console.log("storedSavedParkNames: ", storedSavedParkNames);
@@ -47,7 +47,7 @@ function getSavedParks() {
   }
   return savedParkNames;
 }
-
+//saves park name to local storage if it doesn't already exists
 function saveParkName(parkName) {
   var savedParkNames = getSavedParks();
   console.log("Saved Park Names: ", savedParkNames);
@@ -57,9 +57,8 @@ function saveParkName(parkName) {
     localStorage.setItem("savedParkNames", JSON.stringify(savedParkNames));
   }
 }
-
+//adds parks to saved content
 function populateSavedContent() {
-  console.log("Populate Saved Content");
   var savedParkNames = getSavedParks();
   if (savedParkNames.length !== 0) {
     $("#savedParks").empty();
@@ -73,10 +72,16 @@ function populateSavedContent() {
     });
   }
 }
-
+//Clears saved parks from local storage
 function clearSavedParks() {
-  console.log("Clear Saved Parks Function");
+  $("#savedParks").empty();
+  localStorage.setItem("savedParkNames", JSON.stringify([]));
+  var noParks = $("<p>");
+  noParks.text("You have no saved parks.");
+  $("#savedParks").append(noParks);
 }
+
+clearSavedParksButtonEl.on("click", clearSavedParks);
 
 // Populate saved park names from local storage on page load
 populateSavedContent();
@@ -103,7 +108,7 @@ function pullParkData() {
     // Storing latitude and longitude of park to be used in nearby hikes API
     parkLatitude = response.data[0].latitude;
     parkLongitude = response.data[0].longitude;
-    clearPage()
+    clearPage();
     // Add image to page display
     var iconElement = $("<img>");
     iconElement.attr("src", parkImageLink);
@@ -168,12 +173,20 @@ function hikingTrails(park) {
 
 // Function displays trail list
 function displayTrails(trails) {
-  var trailList = $('<ul>');
+  var trailList = $("<ul>");
   hikingContent.append(trailList);
-  var listItem = $('<a>');
+  var listItem = $("<a>");
   listItem.text(trails.results[3].name);
-  listItem.attr('href', 'https://www.google.com/maps/@' + trails.results[3].geometry.location.lat + ',' + trails.results[3].geometry.location.lng + ',20z')
-  .attr('target', '_blank');
+  listItem
+    .attr(
+      "href",
+      "https://www.google.com/maps/@" +
+        trails.results[3].geometry.location.lat +
+        "," +
+        trails.results[3].geometry.location.lng +
+        ",20z"
+    )
+    .attr("target", "_blank");
   trailList.append(listItem);
 
   // Currently working on for loop to display all trails.
@@ -200,4 +213,4 @@ $(function () {
 });
 
 // Hides list of hiking trails until Hiking tab is called
-hikingContent.attr('style', 'display: none');
+hikingContent.attr("style", "display: none");
