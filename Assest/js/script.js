@@ -40,7 +40,7 @@ function findParkCode(chosenPark) {
 //gets list of saved park names from local storage
 function getSavedParks() {
   var storedSavedParkNames = localStorage.getItem("savedParkNames");
-  console.log("storedSavedParkNames: ", storedSavedParkNames);
+  // console.log("storedSavedParkNames: ", storedSavedParkNames);
   var savedParkNames = [];
   if (storedSavedParkNames) {
     savedParkNames = JSON.parse(storedSavedParkNames);
@@ -50,7 +50,7 @@ function getSavedParks() {
 //saves park name to local storage if it doesn't already exists
 function saveParkName(parkName) {
   var savedParkNames = getSavedParks();
-  console.log("Saved Park Names: ", savedParkNames);
+  // console.log("Saved Park Names: ", savedParkNames);
   var alreadySaved = savedParkNames.includes(parkName);
   if (!alreadySaved) {
     savedParkNames = savedParkNames.concat(parkName);
@@ -97,7 +97,7 @@ function pullParkData() {
     url: parkPullURL,
     method: "GET",
   }).then(function (response) {
-    console.log(response);
+    // console.log(response);
     // Set entryFee variable to cost of entry if > 0, to text "Free Fee Park" if there is no entry fee
     if (response.data[0].entranceFees[0].cost == 0) {
       parkEntryFee = "Entrance to this park is free!";
@@ -153,7 +153,7 @@ function getParkNamesCodes() {
       parkNameList.push(response.data[i].fullName);
     }
   });
-  console.log(parkNameList);
+  // console.log(parkNameList);
   // console.log(parkCodeList);
 }
 
@@ -169,7 +169,7 @@ function hikingTrails(park) {
       return response.json();
     })
     .then(function (trailData) {
-      console.log(trailData);
+      // console.log(trailData);
       displayTrails(trailData);
     });
 }
