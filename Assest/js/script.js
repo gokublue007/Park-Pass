@@ -65,7 +65,7 @@ function populateSavedContent() {
       var parkBtn = $("<button>");
       parkBtn.text(parkName);
       parkBtn.attr("id", parkName);
-      parkBtn.addClass("button");
+      parkBtn.addClass("button m-1");
       parkBtn.addClass("wrapButtonText");
       $("#savedParks").append(parkBtn);
     });
@@ -205,7 +205,10 @@ $(function () {
   $("#tags").autocomplete({
     source: parkNameList,
   });
+  $('#tags').autocomplete('widget').addClass('auto-complete-scroll');
 });
+
+
 
 
 // Allows for tab function to display each tabs content

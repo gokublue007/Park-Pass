@@ -30,12 +30,30 @@ body {
   padding: 1%;
 }
 
+.auto-complete-scroll {
+  max-height: 500px;
+     overflow-y: auto;
+     overflow-x: hidden;
+}
+
 .imgOne {
-  max-height: 250px;
-  max-width: 100%;
+  max-height: 350px;
 }
 
 .wrapButtonText {
   height: max-content;
   white-space: inherit;
+}
+
+.custom-trail a {
+  background-color: #56903a;
+  color: white;
+  border-radius: .3rem;
+  text-align: center;
+  padding-block: .2rem;
+}
+
+.custom-trail a:hover {
+  background-color: hsl(100, 43%, 60%);
+  color: #212121;
 }
