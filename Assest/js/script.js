@@ -70,10 +70,11 @@ function populateSavedContent() {
       parkBtn.addClass("wrapButtonText");
       parkBtn.addClass("savedSearch");
       $("#savedParks").append(parkBtn);
-      $(".savedSearch").on("click", savedParkSearch);
     });
   }
+  $(".savedSearch").on("click", savedParkSearch);
 }
+
 //Clears saved parks from local storage
 function clearSavedParks() {
   $("#savedParks").empty();
@@ -110,7 +111,7 @@ function pullParkData() {
     // Storing latitude and longitude of park to be used in nearby hikes API
     parkLatitude = response.data[0].latitude;
     parkLongitude = response.data[0].longitude;
-    clearPage();
+    
     // Add image to page display
     var iconElement = $("<img>");
     iconElement.attr("src", parkImageLink);
@@ -168,7 +169,7 @@ function hikingTrails(park) {
       return response.json();
     })
     .then(function (trailData) {
-      // console.log(trailData);
+      console.log(trailData);
       displayTrails(trailData);
     });
 }
@@ -196,6 +197,7 @@ getParkNamesCodes();
 
 function runParkSearch(event) {
   event.preventDefault();
+  clearPage();
   chosenPark = inputTextBox.val();
   findParkCode(chosenPark);
   pullParkData();
@@ -206,6 +208,7 @@ searchParkButtonEl.on("click", runParkSearch);
 
 function savedParkSearch(event) {
   event.preventDefault();
+  clearPage();
   chosenPark = event.target.innerText;
   findParkCode(chosenPark);
   pullParkData();
