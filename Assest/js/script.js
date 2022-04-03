@@ -7,6 +7,7 @@ var NPSApiKey = "TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ";
 var googleApiKey = "AIzaSyA_Szh6txcLm9SOSbuZV-CyqKVbqljMkTM";
 var hikingContent = $("#hiking-content");
 var parkInfoContent = $("#park-info-content");
+var savedSearchButtonEl = $(".savedSearch");
 var parkLatitude;
 var parkLongitude;
 var parkCode;
@@ -39,7 +40,7 @@ function findParkCode(chosenPark) {
 //gets list of saved park names from local storage
 function getSavedParks() {
   var storedSavedParkNames = localStorage.getItem("savedParkNames");
-  console.log("storedSavedParkNames: ", storedSavedParkNames);
+  // console.log("storedSavedParkNames: ", storedSavedParkNames);
   var savedParkNames = [];
   if (storedSavedParkNames) {
     savedParkNames = JSON.parse(storedSavedParkNames);
@@ -49,7 +50,7 @@ function getSavedParks() {
 //saves park name to local storage if it doesn't already exists
 function saveParkName(parkName) {
   var savedParkNames = getSavedParks();
-  console.log("Saved Park Names: ", savedParkNames);
+  // console.log("Saved Park Names: ", savedParkNames);
   var alreadySaved = savedParkNames.includes(parkName);
   if (!alreadySaved) {
     savedParkNames = savedParkNames.concat(parkName);
@@ -67,10 +68,13 @@ function populateSavedContent() {
       parkBtn.attr("id", parkName);
       parkBtn.addClass("button m-1");
       parkBtn.addClass("wrapButtonText");
+      parkBtn.addClass("savedSearch");
       $("#savedParks").append(parkBtn);
     });
   }
+  $(".savedSearch").on("click", savedParkSearch);
 }
+
 //Clears saved parks from local storage
 function clearSavedParks() {
   $("#savedParks").empty();
@@ -93,7 +97,7 @@ function pullParkData() {
     url: parkPullURL,
     method: "GET",
   }).then(function (response) {
-    console.log(response);
+    // console.log(response);
     // Set entryFee variable to cost of entry if > 0, to text "Free Fee Park" if there is no entry fee
     if (response.data[0].entranceFees[0].cost == 0) {
       parkEntryFee = "Entrance to this park is free!";
@@ -107,7 +111,7 @@ function pullParkData() {
     // Storing latitude and longitude of park to be used in nearby hikes API
     parkLatitude = response.data[0].latitude;
     parkLongitude = response.data[0].longitude;
-    clearPage();
+    
     // Add image to page display
     var iconElement = $("<img>");
     iconElement.attr("src", parkImageLink);
@@ -121,7 +125,7 @@ function pullParkData() {
 
     // add national park homepage link to display
     var linkElement = $("<a>");
-    linkElement.attr("href", parkHomepageLink);
+    linkElement.attr("href", parkHomepageLink).attr('target', '_blank');
     linkElement.html(parkHomepageLink);
     parkInfoContent.append(linkElement);
 
@@ -149,7 +153,7 @@ function getParkNamesCodes() {
       parkNameList.push(response.data[i].fullName);
     }
   });
-  console.log(parkNameList);
+  // console.log(parkNameList);
   // console.log(parkCodeList);
 }
 
@@ -193,6 +197,7 @@ getParkNamesCodes();
 
 function runParkSearch(event) {
   event.preventDefault();
+  clearPage();
   chosenPark = inputTextBox.val();
   findParkCode(chosenPark);
   pullParkData();
@@ -200,6 +205,15 @@ function runParkSearch(event) {
 }
 
 searchParkButtonEl.on("click", runParkSearch);
+
+function savedParkSearch(event) {
+  event.preventDefault();
+  clearPage();
+  chosenPark = event.target.innerText;
+  findParkCode(chosenPark);
+  pullParkData();
+  hikingTrails(chosenPark);
+}
 
 $(function () {
   $("#tags").autocomplete({
