@@ -56,27 +56,29 @@
             <!-- Information Tabs -->
             <div class="tabs is-centered is-boxed">
               <ul>
-                <li class="is-active">
+                <li class="is-active" data-target="park-info-content">
                   <a>
-                    <span class="icon is-small"><i class="fas fa-info-circle"></i></i></span>
+                    <span class="icon is-small"><i class="fas fa-info-circle"></i></span>
                     <span>Park Info</span>
                   </a>
                 </li>
-                <li>
+                <li data-target="hiking-content">
                   <a>
-                    <span class="icon is-small"><i class="fas fa-hiking"></i></i></i></span>
+                    <span class="icon is-small"><i class="fas fa-hiking"></i></span>
                     <span>Hiking</span>
                   </a>
                 </li>
               </ul>
-            </div>            
-            <div  class="imgOne" id="park-info-content">
-              <!-- Park info here -->
             </div>
-            <!-- Search Results Content -->
-            <div id="hiking-content">
-              <!-- List of hiking Trails will go here -->
-            </div>
+            <div id="tab-content">            
+              <div  class="has-text-centered" id="park-info-content">
+                <!-- Park info here -->
+              </div>
+              <!-- Search Results Content -->
+              <div class="is-hidden" id="hiking-content">
+                <!-- List of hiking Trails will go here -->
+              </div>
+          </div>
           </div>
         </article>
       </div>

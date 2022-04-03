@@ -65,7 +65,7 @@ function populateSavedContent() {
       var parkBtn = $("<button>");
       parkBtn.text(parkName);
       parkBtn.attr("id", parkName);
-      parkBtn.addClass("button");
+      parkBtn.addClass("button m-1");
       parkBtn.addClass("wrapButtonText");
       $("#savedParks").append(parkBtn);
     });
@@ -165,19 +165,21 @@ function hikingTrails(park) {
       return response.json();
     })
     .then(function (trailData) {
-      console.log(trailData);
+      // console.log(trailData);
       displayTrails(trailData);
     });
 }
 
 // Function displays trail list
 function displayTrails(trails) {
-  // Currently working on for loop to display all trails.
+  
   for (var i = 0; i < trails.results.length; i++) {
+    // Creates text for trail
     var listItem = $('<p>'); 
     listItem.addClass('custom-trail');   
     hikingContent.append(listItem);
 
+    // Creates link to trailhead
     var trailLink = $('<a>');
     listItem.append(trailLink);
     trailLink.text(trails.results[i].name);
@@ -186,8 +188,6 @@ function displayTrails(trails) {
   }
 
 }
-
-// hikingTrails();
 
 getParkNamesCodes();
 
@@ -205,7 +205,31 @@ $(function () {
   $("#tags").autocomplete({
     source: parkNameList,
   });
+  $('#tags').autocomplete('widget').addClass('auto-complete-scroll');
 });
 
-// Hides list of hiking trails until Hiking tab is called
-hikingContent.attr("style", "display: none");
+
+
+
+// Allows for tab function to display each tabs content
+var tabs = document.querySelectorAll('.tabs li');
+var tabContent = document.querySelectorAll('#tab-content > div');
+
+// Gives/removes class "is-active" when tab is click
+tabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(item => item.classList.remove('is-active'))
+    tab.classList.add('is-active');
+
+    // Hides/displays tab content when click
+    const target = tab.dataset.target;
+    tabContent.forEach(box => {
+      if (box.getAttribute('id') === target) {
+        box.classList.remove('is-hidden');
+      } else {
+        box.classList.add('is-hidden');
+      }
+    })
+
+  })
+})
