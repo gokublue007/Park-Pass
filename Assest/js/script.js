@@ -125,7 +125,7 @@ function pullParkData() {
 
     // add national park homepage link to display
     var linkElement = $("<a>");
-    linkElement.attr("href", parkHomepageLink);
+    linkElement.attr("href", parkHomepageLink).attr('target', '_blank');
     linkElement.html(parkHomepageLink);
     parkInfoContent.append(linkElement);
 
