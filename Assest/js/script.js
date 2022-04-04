@@ -16,9 +16,6 @@ var parkEntryFee;
 var parkImageLink;
 var parkHomepageLink;
 
-// Place holder for input text until we get that functionally working
-// var inputText = "Abraham Lincoln Birthplace National Historical Park";
-
 // Clears previous search results when new search is made
 function clearPage() {
   hikingContent.empty();
@@ -66,7 +63,7 @@ function populateSavedContent() {
       var parkBtn = $("<button>");
       parkBtn.text(parkName);
       parkBtn.attr("id", parkName);
-      parkBtn.addClass("button m-1");
+      parkBtn.addClass("button is-fullwidth m-1");
       parkBtn.addClass("wrapButtonText");
       parkBtn.addClass("savedSearch");
       $("#savedParks").append(parkBtn);
@@ -83,8 +80,6 @@ function clearSavedParks() {
   noParks.text("You have no saved parks.");
   $("#savedParks").append(noParks);
 }
-
-clearSavedParksButtonEl.on("click", clearSavedParks);
 
 // Populate saved park names from local storage on page load
 populateSavedContent();
@@ -159,17 +154,13 @@ function getParkNamesCodes() {
 
 // Function pulls data from google maps api
 function hikingTrails(park) {
-  fetch(
-    `https://mighty-headland-78923.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${park}&key=${googleApiKey}`,
-    {
-      method: "GET",
-    }
-  )
+  var googleMapsApi = `https://mighty-headland-78923.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${park}&key=${googleApiKey}`;
+
+    fetch(googleMapsApi)
     .then(function (response) {
       return response.json();
     })
-    .then(function (trailData) {
-      // console.log(trailData);
+    .then(function (trailData) {      
       displayTrails(trailData);
     });
 }
@@ -180,7 +171,7 @@ function displayTrails(trails) {
   for (var i = 0; i < trails.results.length; i++) {
     // Creates text for trail
     var listItem = $('<p>'); 
-    listItem.addClass('custom-trail');   
+    listItem.addClass('custom-trail mx-auto has-text-centered ');   
     hikingContent.append(listItem);
 
     // Creates link to trailhead
@@ -204,8 +195,6 @@ function runParkSearch(event) {
   hikingTrails(chosenPark);
 }
 
-searchParkButtonEl.on("click", runParkSearch);
-
 function savedParkSearch(event) {
   event.preventDefault();
   clearPage();
@@ -221,9 +210,6 @@ $(function () {
   });
   $('#tags').autocomplete('widget').addClass('auto-complete-scroll');
 });
-
-
-
 
 // Allows for tab function to display each tabs content
 var tabs = document.querySelectorAll('.tabs li');
@@ -244,6 +230,8 @@ tabs.forEach((tab) => {
         box.classList.add('is-hidden');
       }
     })
-
   })
-})
+});
+
+clearSavedParksButtonEl.on("click", clearSavedParks);
+searchParkButtonEl.on("click", runParkSearch);

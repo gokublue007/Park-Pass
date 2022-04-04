@@ -14,77 +14,81 @@
 </head>
 
 <body>
-  <section class="hero is-small">
-    <div class="hero-body">
-      <h1 class="title has-text-centered is-1" id="colorName">Park Pass</h1>
-      <p class="subtitle has-text-centered" id="sub">Plan your trip with ease!</p>
-    </div>
-  </section>
+  
+    <section class="hero is-small">
+      <div class="hero-body">
+        <h1 class="title has-text-centered is-1" id="colorName">Park Pass</h1>
+        <p class="subtitle has-text-centered" id="sub">Plan your trip with ease!</p>
+      </div>
+    </section>
 
-  <aside>
-    <div class="tile is-parent">
-      <article class="tile is-child box">
-        <h2 class="title has-text-centered is-2" id="hero">WELCOME</h2>
-        <p class="subtitle has-text-centered" id="sub">Please enter the National Park you would like information on!</p>
-        <input class="input is-success" class="input" id="tags" type="text" placeholder="Search"></input>
-        <div class="has-text-right">
-          <button class="button is-responsive is-rounded is-success is-outlined is-left" id="searchParkButton"
-            type="submit">Search Park</button>
-        </div>
-      </article>
-    </div>
-    </div>
-  </aside>
-
-  <main>
-    <div class="tile is-ancestor">
+    <div class="container">
+    <aside>
       <div class="tile is-parent">
         <article class="tile is-child box">
-          <p class="title has-text-centered is-2" id="hero">Recently Viewed</p>
-          <p class="subtitle has-text-centered" id="sub">Parks</p>
-          <button id="clearSavedParksButton" class="button is-danger is-fullwidth"><span class="icon is-small mr-1"><i class="fas fa-trash-alt"></i></span>Clear Saves</button>
-          <div class="content" id="savedParks">
-            <p>You don't have any saved parks yet.</p>
-          </div>
-        </article>
-      </div>
-      <div class="tile is-parent is-8">
-        <article class="tile is-child box">
-          <p class="title has-text-centered is-2" id="hero" >Search Results</p>
-          <p class="subtitle has-text-centered" id="sub"> National Parks, Website, Entry Fee and Hikes:</p>
-          <div class="content">
-            <!-- Information Tabs -->
-            <div class="tabs is-centered is-boxed">
-              <ul>
-                <li class="is-active" data-target="park-info-content">
-                  <a>
-                    <span class="icon is-small"><i class="fas fa-info-circle"></i></span>
-                    <span>Park Info</span>
-                  </a>
-                </li>
-                <li data-target="hiking-content">
-                  <a>
-                    <span class="icon is-small"><i class="fas fa-hiking"></i></span>
-                    <span>Hiking</span>
-                  </a>
-                </li>
-              </ul>
+          <h2 class="title has-text-centered is-2" id="hero">WELCOME</h2>
+          <p class="subtitle has-text-centered" id="sub">Please enter the National Park you would like information on!</p>
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input class="input is-success" id="tags" type="text" placeholder="Search"></input>
             </div>
-            <div id="tab-content">            
-              <div  class="has-text-centered" id="park-info-content">
-                <!-- Park info here -->
-              </div>
-              <!-- Search Results Content -->
-              <div class="is-hidden" id="hiking-content" class="auto-complete-scroll">
-                <!-- List of hiking Trails will go here -->
-              </div>
-          </div>
+            <div class="control">        
+              <button class="button is-responsive is-rounded is-success is-outlined" id="searchParkButton"
+                type="submit">Search Park</button>
+            </div>
           </div>
         </article>
-      </div>
-  </main>
+      </div>    
+    </aside>
 
-  <footer>
+    <main class="m-3">
+      <div class="tile is-ancestor">
+        <div class="tile is-parent">
+          <article class="tile is-child box">
+            <p class="title has-text-centered is-2" id="hero">Recently Viewed</p>
+            <p class="subtitle has-text-centered" id="sub">Parks</p>
+            <button id="clearSavedParksButton" class="button is-danger is-fullwidth"><span class="icon is-small mr-1"><i class="fas fa-trash-alt"></i></span>Clear Saves</button>
+            <div class="content" id="savedParks">
+              <p>You don't have any saved parks yet.</p>
+            </div>
+          </article>
+        </div>
+        <div class="tile is-parent is-8">
+          <article class="tile is-child box">
+            <p class="title has-text-centered is-2" id="hero">Search Results</p>
+            <p class="subtitle has-text-centered" id="sub"> National Parks, Website, Entry Fee and Hikes:</p>
+            <div class="content">
+              <!-- Information Tabs -->
+              <div class="tabs is-centered is-boxed">
+                <ul>
+                  <li class="is-active" data-target="park-info-content">
+                    <a>
+                      <span class="icon is-small"><i class="fas fa-info-circle"></i></span>
+                      <span>Park Info</span>
+                    </a>
+                  </li>
+                  <li data-target="hiking-content">
+                    <a>
+                      <span class="icon is-small"><i class="fas fa-hiking"></i></span>
+                      <span>Hiking</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div id="tab-content">            
+                <div  class="has-text-centered" id="park-info-content">
+                  <!-- Park info here -->
+                </div>
+                <!-- Search Results Content -->
+                <div class="is-hidden" id="hiking-content">
+                  <!-- List of hiking Trails will go here -->
+                </div>
+            </div>
+            </div>
+          </article>
+        </div>
+    </main>
+  </div>
     <footer class="footer" id="contactUs">
       <div class="content has-text-centered">
         <p>
@@ -92,7 +96,7 @@
         </p>
       </div>
     </footer>
-  </footer>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
