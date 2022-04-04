@@ -160,7 +160,8 @@ function hikingTrails(park) {
     .then(function (response) {
       return response.json();
     })
-    .then(function (trailData) {      
+    .then(function (trailData) { 
+      console.log(trailData);     
       displayTrails(trailData);
     });
 }
