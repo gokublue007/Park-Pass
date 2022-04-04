@@ -70,8 +70,7 @@ padding-block: .2rem;
   color: #212121;
 }
 
-/* .footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-} */
+.footer {
+background-color: #213a1b;
+color: white;
+}
