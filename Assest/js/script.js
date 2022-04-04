@@ -176,6 +176,8 @@ function loadMap(latInt, lngInt) {
       zoom: 10,
       disableDefaultUI: true,
       fullscreenControl: true,
+      streetViewControl: true,
+      zoomControl: true,
     });
 
   var request = {
