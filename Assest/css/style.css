@@ -1,13 +1,11 @@
-/* * {
-  padding: 2%;
-} */
 
-body {
-  height: 100vh;
+body {  
   background-image: url(../img/93639-jasper-national-park-hd-hd-desktop-wallpaper.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  height: auto;
+  width: auto;
 }
 
 .hero-body {
@@ -36,8 +34,17 @@ body {
   overflow-x: hidden;
 }
 
+
 .imgOne {
   max-height: 350px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.imgTwo {
+  max-height: 350px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .wrapButtonText {
