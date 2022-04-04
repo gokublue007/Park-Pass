@@ -15,6 +15,9 @@ var chosenPark;
 var parkEntryFee;
 var parkImageLink;
 var parkHomepageLink;
+var map;
+var service;
+var infowindow;
 
 // Clears previous search results when new search is made
 function clearPage() {
@@ -132,6 +135,7 @@ function pullParkData() {
     var parkFullName = response.data[0].fullName;
     saveParkName(parkFullName);
     populateSavedContent();
+    hikingTrails(parkLatitude, parkLongitude);
   });
 }
 
@@ -153,37 +157,61 @@ function getParkNamesCodes() {
 }
 
 // Function pulls data from google maps api
-function hikingTrails(park) {
-  var googleMapsApi = `https://mighty-headland-78923.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+${park}&key=${googleApiKey}`;
+function hikingTrails(lat, lng) {
+  var parkLat = lat;
+  var parkLng = lng;
+  var mapEl = $('<div>');
+  mapEl.attr('id', 'map').attr('class', 'mx-auto');
+  hikingContent.append(mapEl);
+  loadMap(parkLat, parkLng);
+}
 
-    fetch(googleMapsApi)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (trailData) { 
-      console.log(trailData);     
-      displayTrails(trailData);
+// Displays google map centered National Park
+function loadMap(latInt, lngInt) {
+  var park = new google.maps.LatLng(latInt, lngInt);
+
+  infowindow = new google.maps.InfoWindow();
+  map = new google.maps.Map(document.getElementById('map'), {
+      center: park,
+      zoom: 10,
+      disableDefaultUI: true,
+      fullscreenControl: true,
     });
+
+  var request = {
+    location: park,
+    radius: '500',
+    query: 'hiking trail',
+    fields:['name', 'formatted_address',],
+  };
+
+  service = new google.maps.places.PlacesService(map);
+  service.textSearch(request, callback);
 }
 
-// Function displays trail list
-function displayTrails(trails) {
-  
-  for (var i = 0; i < trails.results.length; i++) {
-    // Creates text for trail
-    var listItem = $('<p>'); 
-    listItem.addClass('custom-trail mx-auto has-text-centered ');   
-    hikingContent.append(listItem);
-
-    // Creates link to trailhead
-    var trailLink = $('<a>');
-    listItem.append(trailLink);
-    trailLink.text(trails.results[i].name);
-    trailLink.attr('href', 'https://www.google.com/maps/@' + trails.results[i].geometry.location.lat + ',' + trails.results[i].geometry.location.lng + ',20z')
-    .attr('target', '_blank');    
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      createMarker(results[i]);
+    }
   }
-
 }
+
+// This functions creates markers on trail location
+function createMarker(place) {
+    if (!place.geometry || !place.geometry.location) return;
+  
+    const marker = new google.maps.Marker({
+      map,
+      position: place.geometry.location,
+    });
+  
+    // Event listener to display trail name
+    google.maps.event.addListener(marker, "click", () => {
+      infowindow.setContent(place.name);
+      infowindow.open(map, marker);
+    });
+  }  
 
 getParkNamesCodes();
 
@@ -193,7 +221,6 @@ function runParkSearch(event) {
   chosenPark = inputTextBox.val();
   findParkCode(chosenPark);
   pullParkData();
-  hikingTrails(chosenPark);
 }
 
 function savedParkSearch(event) {
@@ -202,7 +229,6 @@ function savedParkSearch(event) {
   chosenPark = event.target.innerText;
   findParkCode(chosenPark);
   pullParkData();
-  hikingTrails(chosenPark);
 }
 
 $(function () {
