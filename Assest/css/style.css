@@ -37,6 +37,9 @@ body {
   overflow-x: hidden;
 }
 
+.custom-content {
+  min-height: 500px;
+}
 
 .imgOne {
   max-height: 350px;
@@ -53,6 +56,12 @@ body {
 .wrapButtonText {
   height: max-content;
   white-space: inherit;
+}
+
+#hiking-content {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .custom-trail {
