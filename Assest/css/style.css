@@ -1,6 +1,6 @@
-* {
+/* * {
   padding: 1%;
-}
+} */
 
 body {  
   background-image: url(../img/93639-jasper-national-park-hd-hd-desktop-wallpaper.jpg);
@@ -58,10 +58,10 @@ body {
   white-space: inherit;
 }
 
-#hiking-content {
-  max-height: 500px;
-  overflow-y: auto;
-  overflow-x: hidden;
+#map {
+  width: 40rem;
+  height: 30rem;
+  border-radius: .5rem;
 }
 
 .custom-trail {
