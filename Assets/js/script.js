@@ -228,6 +228,7 @@ function createMarker(place) {
       trailLink.appendChild(viewTrail);
       
       infowindow.setContent(content);
+
       infowindow.open(map, marker);
     });
   }  
