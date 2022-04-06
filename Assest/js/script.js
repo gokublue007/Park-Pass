@@ -210,7 +210,24 @@ function createMarker(place) {
   
     // Event listener to display trail name
     google.maps.event.addListener(marker, "click", () => {
-      infowindow.setContent(place.name);
+      const content = document.createElement("div");
+      const nameEl = document.createElement("h4");
+
+      nameEl.textContent = place.name;
+      content.appendChild(nameEl);
+
+      const trailLink = document.createElement("a");
+      trailLink.setAttribute('href', 'https://maps.google.com/maps?ll=' + place.geometry.location + '&;z=13&;t=m&;hl=en-US&;gl=US&;mapclient=apiv3');
+      trailLink.setAttribute('target', '_blank');
+      trailLink.setAttribute('jstcache', '6');
+      trailLink.setAttribute('tabindex', '0');
+      content.appendChild(trailLink);
+
+      const viewTrail = document.createElement("span");
+      viewTrail.textContent = 'View trail on Google Maps';
+      trailLink.appendChild(viewTrail);
+      
+      infowindow.setContent(content);
       infowindow.open(map, marker);
     });
   }  
@@ -264,3 +281,5 @@ tabs.forEach((tab) => {
 
 clearSavedParksButtonEl.on("click", clearSavedParks);
 searchParkButtonEl.on("click", runParkSearch);
+
+{/* <a target="_blank" jstcache="6" href="https://maps.google.com/maps?ll=38.639083,-109.686494&amp;z=13&amp;t=m&amp;hl=en-US&amp;gl=US&amp;mapclient=apiv3&amp;cid=10900631329513225506" tabindex="0"> <span> View on Google Maps </span> </a> */}

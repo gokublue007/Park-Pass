@@ -1,6 +1,6 @@
-* {
+/* * {
   padding: 1%;
-}
+} */
 
 body {  
   background-image: url(../img/93639-jasper-national-park-hd-hd-desktop-wallpaper.jpg);
@@ -59,10 +59,9 @@ body {
 }
 
 #map {
-  width: 40rem;
-  height: 30rem;
-  border-radius: .5rem;
-  padding: 0%;
+  max-width: 40rem;
+  min-height: 30rem;
+  border-radius: .5rem;  
 }
 
 .custom-trail {
