@@ -1,4 +1,8 @@
-* {
+body {
+  padding: 2%;
+}
+
+.headers {
   padding: 1%;
 }
 
@@ -28,7 +32,7 @@ body {
 }
 
 #contactUs {
-  padding: 0.5%;
+  padding: 2%;
 }
 
 .auto-complete-scroll {
