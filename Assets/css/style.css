@@ -1,3 +1,4 @@
+
 body {  
   background-image: url(../img/93639-jasper-national-park-hd-hd-desktop-wallpaper.jpg);
   background-repeat: no-repeat;
@@ -22,6 +23,10 @@ body {
 
 #sub {
   color: #c56c39;
+}
+
+#contactUs {
+  padding: 0.5%;
 }
 
 .auto-complete-scroll {
