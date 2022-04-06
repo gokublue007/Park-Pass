@@ -36,7 +36,7 @@ body {
 }
 
 .custom-content {
-  min-height: 500px;
+  min-height: 600px;
 }
 
 .imgOne {
@@ -60,22 +60,6 @@ body {
   max-width: 40rem;
   min-height: 30rem;
   border-radius: .5rem;
-  padding: 0%;
-}
-
-.custom-trail {
-width: 15rem;
-background-color: #56903a;
-border-radius: .3rem;
-padding-block: .2rem;
-}
-
-.custom-trail a {  
-  color: white;
-}
-
-.custom-trail a:hover {
-  color: #212121;
 }
 
 .footer {
