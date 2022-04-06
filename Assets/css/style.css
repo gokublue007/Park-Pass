@@ -1,0 +1,86 @@
+* {
+  padding: 1%;
+}
+
+body {  
+  background-image: url(../img/93639-jasper-national-park-hd-hd-desktop-wallpaper.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: auto;
+  width: auto;
+}
+
+.hero-body {
+  background-color: #213a1b !important;
+}
+
+#hero {
+  color: #56903a;
+}
+
+#colorName {
+  color: white;
+}
+
+#sub {
+  color: #c56c39;
+}
+
+#contactUs {
+  padding: 0.5%;
+}
+
+.auto-complete-scroll {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.custom-content {
+  min-height: 500px;
+}
+
+.imgOne {
+  max-height: 350px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.imgTwo {
+  max-height: 350px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.wrapButtonText {
+  height: max-content;
+  white-space: inherit;
+}
+
+#map {
+  width: 40rem;
+  height: 30rem;
+  border-radius: .5rem;
+  padding: 0%;
+}
+
+.custom-trail {
+width: 15rem;
+background-color: #56903a;
+border-radius: .3rem;
+padding-block: .2rem;
+}
+
+.custom-trail a {  
+  color: white;
+}
+
+.custom-trail a:hover {
+  color: #212121;
+}
+
+.footer {
+background-color: #213a1b;
+color: white;
+}
