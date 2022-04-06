@@ -5,8 +5,10 @@ var parkCodeList = [];
 var parkNameList = [];
 var NPSApiKey = "TNFSbiKup0DvQBzqjbD6tCiZTq4j6SBhWGF4hCOQ";
 var googleApiKey = "AIzaSyA_Szh6txcLm9SOSbuZV-CyqKVbqljMkTM";
+var weatherApiKey = "1bb5db5b652ed01ed43e82a79df4ebd1";
 var hikingContent = $("#hiking-content");
 var parkInfoContent = $("#park-info-content");
+var weatherContent = $("#weather-content");
 var savedSearchButtonEl = $(".savedSearch");
 var parkLatitude;
 var parkLongitude;
@@ -23,6 +25,7 @@ var infowindow;
 function clearPage() {
   hikingContent.empty();
   parkInfoContent.empty();
+  weatherContent.empty();
 }
 
 // This function will take the input the user types into the search box, find the spot in the parkNamees array that matches the input and return the corresponding park code from the
@@ -87,6 +90,53 @@ function clearSavedParks() {
 // Populate saved park names from local storage on page load
 populateSavedContent();
 
+function displayWeatherData(data) {
+  console.log(data);
+  var currentCity = data.name;
+  var currentDate = moment().format("(MM/DD/YYYY)");
+  var currentIcon = data.weather[0].icon;
+  var currentTemp = data.main.temp;
+  var currentWind = data.wind.speed;
+  var currentHumidity = data.main.humidity;
+
+  var weatherSection = $("<section>");
+  var weatherHeader = $("<h2>");
+  var weatherImage = $("<img>");
+  var weatherTempEl = $("<p>");
+  var weatherWindEl = $("<p>");
+  var weatherHumidityEl = $("<p>");
+  var weatherDateEl = $("<p>");
+
+  weatherHeader.text(currentCity);
+  weatherDateEl.text(currentDate);
+  weatherImage.attr(
+    "src",
+    `http://openweathermap.org/img/wn/${currentIcon}@2x.png`
+  );
+  weatherTempEl.text(`Temp: ${currentTemp}`);
+  weatherWindEl.text(`Wind: ${currentWind}`);
+  weatherHumidityEl.text(`Humidity: ${currentHumidity}`);
+  weatherSection.append(weatherHeader);
+  weatherSection.append(weatherDateEl);
+  weatherSection.append(weatherImage);
+  weatherSection.append(weatherTempEl);
+  weatherSection.append(weatherWindEl);
+  weatherSection.append(weatherHumidityEl);
+  weatherContent.append(weatherSection);
+}
+
+function pullWeatherData(city) {
+  console.log(city);
+  var currentWeatherApi = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${weatherApiKey}`;
+  fetch(currentWeatherApi)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (weatherData) {
+      displayWeatherData(weatherData);
+    });
+}
+
 // This function will be executed upon clicking the search button
 // This function will pull the necessary park data to then be displayed under the Park Info tab
 function pullParkData() {
@@ -95,7 +145,7 @@ function pullParkData() {
     url: parkPullURL,
     method: "GET",
   }).then(function (response) {
-    // console.log(response);
+    console.log(response);
     // Set entryFee variable to cost of entry if > 0, to text "Free Fee Park" if there is no entry fee
     if (response.data[0].entranceFees[0].cost == 0) {
       parkEntryFee = "Entrance to this park is free!";
@@ -109,7 +159,7 @@ function pullParkData() {
     // Storing latitude and longitude of park to be used in nearby hikes API
     parkLatitude = response.data[0].latitude;
     parkLongitude = response.data[0].longitude;
-    
+
     // Add image to page display
     var iconElement = $("<img>");
     iconElement.attr("src", parkImageLink);
@@ -123,7 +173,7 @@ function pullParkData() {
 
     // add national park homepage link to display
     var linkElement = $("<a>");
-    linkElement.attr("href", parkHomepageLink).attr('target', '_blank');
+    linkElement.attr("href", parkHomepageLink).attr("target", "_blank");
     linkElement.html(parkHomepageLink);
     parkInfoContent.append(linkElement);
 
@@ -136,6 +186,9 @@ function pullParkData() {
     saveParkName(parkFullName);
     populateSavedContent();
     hikingTrails(parkLatitude, parkLongitude);
+
+    parkCity = response.data[0].addresses[0].city;
+    pullWeatherData(parkCity);
   });
 }
 
@@ -160,8 +213,8 @@ function getParkNamesCodes() {
 function hikingTrails(lat, lng) {
   var parkLat = lat;
   var parkLng = lng;
-  var mapEl = $('<div>');
-  mapEl.attr('id', 'map').attr('class', 'mx-auto');
+  var mapEl = $("<div>");
+  mapEl.attr("id", "map").attr("class", "mx-auto");
   hikingContent.append(mapEl);
   loadMap(parkLat, parkLng);
 }
@@ -171,20 +224,20 @@ function loadMap(latInt, lngInt) {
   var park = new google.maps.LatLng(latInt, lngInt);
 
   infowindow = new google.maps.InfoWindow();
-  map = new google.maps.Map(document.getElementById('map'), {
-      center: park,
-      zoom: 10,
-      disableDefaultUI: true,
-      fullscreenControl: true,
-      streetViewControl: true,
-      zoomControl: true,
-    });
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: park,
+    zoom: 10,
+    disableDefaultUI: true,
+    fullscreenControl: true,
+    streetViewControl: true,
+    zoomControl: true,
+  });
 
   var request = {
     location: park,
-    radius: '500',
-    query: 'hiking trail',
-    fields:['name', 'formatted_address',],
+    radius: "500",
+    query: "hiking trail",
+    fields: ["name", "formatted_address"],
   };
 
   service = new google.maps.places.PlacesService(map);
@@ -198,40 +251,69 @@ function callback(results, status) {
     }
   }
 }
+// Function displays trail list
+function displayTrails(trails) {
+  for (var i = 0; i < trails.results.length; i++) {
+    // Creates text for trail
+    var listItem = $("<p>");
+    listItem.addClass("custom-trail mx-auto has-text-centered ");
+    hikingContent.append(listItem);
+
+    // Creates link to trailhead
+    var trailLink = $("<a>");
+    listItem.append(trailLink);
+    trailLink.text(trails.results[i].name);
+    trailLink
+      .attr(
+        "href",
+        "https://www.google.com/maps/@" +
+          trails.results[i].geometry.location.lat +
+          "," +
+          trails.results[i].geometry.location.lng +
+          ",20z"
+      )
+      .attr("target", "_blank");
+  }
+}
 
 // This functions creates markers on trail location
 function createMarker(place) {
-    if (!place.geometry || !place.geometry.location) return;
-  
-    const marker = new google.maps.Marker({
-      map,
-      position: place.geometry.location,
-    });
-  
-    // Event listener to display trail name
-    google.maps.event.addListener(marker, "click", () => {
-      const content = document.createElement("div");
-      const nameEl = document.createElement("h4");
+  if (!place.geometry || !place.geometry.location) return;
 
-      nameEl.textContent = place.name;
-      content.appendChild(nameEl);
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+  });
 
-      const trailLink = document.createElement("a");
-      trailLink.setAttribute('href', 'https://maps.google.com/maps?ll=' + place.geometry.location + '&;z=13&;t=m&;hl=en-US&;gl=US&;mapclient=apiv3');
-      trailLink.setAttribute('target', '_blank');
-      trailLink.setAttribute('jstcache', '6');
-      trailLink.setAttribute('tabindex', '0');
-      content.appendChild(trailLink);
+  // Event listener to display trail name
+  google.maps.event.addListener(marker, "click", () => {
+    const content = document.createElement("div");
+    const nameEl = document.createElement("h4");
 
-      const viewTrail = document.createElement("span");
-      viewTrail.textContent = 'View trail on Google Maps';
-      trailLink.appendChild(viewTrail);
-      
-      infowindow.setContent(content);
+    nameEl.textContent = place.name;
+    content.appendChild(nameEl);
 
-      infowindow.open(map, marker);
-    });
-  }  
+    const trailLink = document.createElement("a");
+    trailLink.setAttribute(
+      "href",
+      "https://maps.google.com/maps?ll=" +
+        place.geometry.location +
+        "&;z=13&;t=m&;hl=en-US&;gl=US&;mapclient=apiv3"
+    );
+    trailLink.setAttribute("target", "_blank");
+    trailLink.setAttribute("jstcache", "6");
+    trailLink.setAttribute("tabindex", "0");
+    content.appendChild(trailLink);
+
+    const viewTrail = document.createElement("span");
+    viewTrail.textContent = "View trail on Google Maps";
+    trailLink.appendChild(viewTrail);
+
+    infowindow.setContent(content);
+
+    infowindow.open(map, marker);
+  });
+}
 
 getParkNamesCodes();
 
@@ -255,32 +337,34 @@ $(function () {
   $("#tags").autocomplete({
     source: parkNameList,
   });
-  $('#tags').autocomplete('widget').addClass('auto-complete-scroll');
+  $("#tags").autocomplete("widget").addClass("auto-complete-scroll");
 });
 
 // Allows for tab function to display each tabs content
-var tabs = document.querySelectorAll('.tabs li');
-var tabContent = document.querySelectorAll('#tab-content > div');
+var tabs = document.querySelectorAll(".tabs li");
+var tabContent = document.querySelectorAll("#tab-content > div");
 
 // Gives/removes class "is-active" when tab is click
 tabs.forEach((tab) => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(item => item.classList.remove('is-active'))
-    tab.classList.add('is-active');
+  tab.addEventListener("click", () => {
+    tabs.forEach((item) => item.classList.remove("is-active"));
+    tab.classList.add("is-active");
 
     // Hides/displays tab content when click
     const target = tab.dataset.target;
-    tabContent.forEach(box => {
-      if (box.getAttribute('id') === target) {
-        box.classList.remove('is-hidden');
+    tabContent.forEach((box) => {
+      if (box.getAttribute("id") === target) {
+        box.classList.remove("is-hidden");
       } else {
-        box.classList.add('is-hidden');
+        box.classList.add("is-hidden");
       }
-    })
-  })
+    });
+  });
 });
 
 clearSavedParksButtonEl.on("click", clearSavedParks);
 searchParkButtonEl.on("click", runParkSearch);
 
-{/* <a target="_blank" jstcache="6" href="https://maps.google.com/maps?ll=38.639083,-109.686494&amp;z=13&amp;t=m&amp;hl=en-US&amp;gl=US&amp;mapclient=apiv3&amp;cid=10900631329513225506" tabindex="0"> <span> View on Google Maps </span> </a> */}
+{
+  /* <a target="_blank" jstcache="6" href="https://maps.google.com/maps?ll=38.639083,-109.686494&amp;z=13&amp;t=m&amp;hl=en-US&amp;gl=US&amp;mapclient=apiv3&amp;cid=10900631329513225506" tabindex="0"> <span> View on Google Maps </span> </a> */
+}
