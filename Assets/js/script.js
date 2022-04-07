@@ -107,6 +107,8 @@ function displayWeatherData(data) {
   var weatherHumidityEl = $("<p>");
   var weatherDateEl = $("<p>");
 
+  weatherSection.attr("class", "weatherCard");
+
   weatherHeader.text(currentCity);
   weatherDateEl.text(currentDate);
   weatherImage.attr(

@@ -67,3 +67,7 @@ background-color: #213a1b;
 color: white;
 padding: 2%;
 }
+
+.weatherCard {
+  padding: 80px 0 0 0;
+}
