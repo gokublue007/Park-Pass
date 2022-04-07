@@ -251,30 +251,6 @@ function callback(results, status) {
     }
   }
 }
-// Function displays trail list
-function displayTrails(trails) {
-  for (var i = 0; i < trails.results.length; i++) {
-    // Creates text for trail
-    var listItem = $("<p>");
-    listItem.addClass("custom-trail mx-auto has-text-centered ");
-    hikingContent.append(listItem);
-
-    // Creates link to trailhead
-    var trailLink = $("<a>");
-    listItem.append(trailLink);
-    trailLink.text(trails.results[i].name);
-    trailLink
-      .attr(
-        "href",
-        "https://www.google.com/maps/@" +
-          trails.results[i].geometry.location.lat +
-          "," +
-          trails.results[i].geometry.location.lng +
-          ",20z"
-      )
-      .attr("target", "_blank");
-  }
-}
 
 // This functions creates markers on trail location
 function createMarker(place) {
@@ -296,9 +272,7 @@ function createMarker(place) {
     const trailLink = document.createElement("a");
     trailLink.setAttribute(
       "href",
-      "https://maps.google.com/maps?ll=" +
-        place.geometry.location +
-        "&;z=13&;t=m&;hl=en-US&;gl=US&;mapclient=apiv3"
+      "https://www.google.com/maps/search/?api=1&query=" + place.name
     );
     trailLink.setAttribute("target", "_blank");
     trailLink.setAttribute("jstcache", "6");
@@ -364,7 +338,3 @@ tabs.forEach((tab) => {
 
 clearSavedParksButtonEl.on("click", clearSavedParks);
 searchParkButtonEl.on("click", runParkSearch);
-
-{
-  /* <a target="_blank" jstcache="6" href="https://maps.google.com/maps?ll=38.639083,-109.686494&amp;z=13&amp;t=m&amp;hl=en-US&amp;gl=US&amp;mapclient=apiv3&amp;cid=10900631329513225506" tabindex="0"> <span> View on Google Maps </span> </a> */
-}
