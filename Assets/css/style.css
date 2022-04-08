@@ -1,4 +1,6 @@
-
+* {
+  font-family: 'Times New Roman', Times, serif;
+}
 body {  
   background-image: url(../img/93639-jasper-national-park-hd-hd-desktop-wallpaper.jpg);
   background-repeat: no-repeat;
@@ -69,5 +71,19 @@ padding: 2%;
 }
 
 .weatherCard {
-  padding: 80px 0 0 0;
+  padding: 20px 0 0 0;
+  color: white ;
+  font-size: 30px;
+  background-image: url(../img/261669-national-parks-wallpaper.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: auto;
+  width: auto;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.backGround {
+  color: black;
+  font-family:'Times New Roman', Times, serif
 }

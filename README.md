@@ -1,6 +1,6 @@
 # Park-Pass
 
-![Project Image](./Assets/img/Park-Information.gif)
+![Project Image](./Assets/img/park-pass.gif)
 
 
 ## Deployment
