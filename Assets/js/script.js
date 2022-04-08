@@ -36,7 +36,6 @@ function findParkCode(chosenPark) {
   for (i = 0; i < parkNameList.length; i++) {
     if (chosenPark == parkNameList[i]) {
       parkCode = parkCodeList[i];
-      // console.log(parkCode);
       break;
     }
   }
@@ -44,7 +43,6 @@ function findParkCode(chosenPark) {
 //gets list of saved park names from local storage
 function getSavedParks() {
   var storedSavedParkNames = localStorage.getItem("savedParkNames");
-  // console.log("storedSavedParkNames: ", storedSavedParkNames);
   var savedParkNames = [];
   if (storedSavedParkNames) {
     savedParkNames = JSON.parse(storedSavedParkNames);
@@ -54,7 +52,6 @@ function getSavedParks() {
 //saves park name to local storage if it doesn't already exists
 function saveParkName(parkName) {
   var savedParkNames = getSavedParks();
-  // console.log("Saved Park Names: ", savedParkNames);
   var alreadySaved = savedParkNames.includes(parkName);
   if (!alreadySaved) {
     savedParkNames = savedParkNames.concat(parkName);
@@ -92,7 +89,6 @@ function clearSavedParks() {
 populateSavedContent();
 
 function displayWeatherData(data) {
-  console.log(data);
   var currentCity = data.name;
   var currentDate = moment().format("(MM/DD/YYYY)");
   var currentIcon = data.weather[0].icon;
@@ -129,7 +125,6 @@ function displayWeatherData(data) {
 }
 
 function pullWeatherData(city) {
-  console.log(city);
   var currentWeatherApi = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${weatherApiKey}`;
   fetch(currentWeatherApi)
     .then(function (response) {
@@ -148,14 +143,11 @@ function pullParkData() {
     url: parkPullURL,
     method: "GET",
   }).then(function (response) {
-    console.log(response);
     // Set entryFee variable to cost of entry if > 0, to text "Free Fee Park" if there is no entry fee
     if (response.data[0].entranceFees[0].cost == 0) {
       parkEntryFee = "Entrance to this park is free!";
-      // console.log(parkEntryFee);
     } else {
       parkEntryFee = response.data[0].entranceFees[0].cost;
-      // console.log(parkEntryFee);
     }
     parkHomepageLink = response.data[0].url;
     parkImageLink = response.data[0].images[0].url;
@@ -202,14 +194,11 @@ function getParkNamesCodes() {
     url: allParksURL,
     method: "GET",
   }).then(function (response) {
-    // console.log(response);
     for (i = 0; i < response.data.length; i++) {
       parkCodeList.push(response.data[i].parkCode);
       parkNameList.push(response.data[i].fullName);
     }
   });
-  // console.log(parkNameList);
-  // console.log(parkCodeList);
 }
 
 // Function pulls data from google maps api
