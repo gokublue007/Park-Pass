@@ -13,7 +13,7 @@
 ## Our Task
 
 ```
-Our task was to create a website with a SEO to every single National Park in the U.S. 
+Our task was to create a website that can provide information related to any and every National Park in the U.S. requiring only the name of the National Park as input.
 
 ```
 
@@ -22,9 +22,9 @@ Our task was to create a website with a SEO to every single National Park in the
 ## User Story
  
 ```
-AS A hiker
+AS A person planning a trip to one or many National Parks
 
-I WANT to see what park info, trials, and weather are around me 
+I WANT to see specific park info, trails near the park, and weather at the city closest to the park
 
 SO THAT I can plan a trip for the day!
 
@@ -34,11 +34,19 @@ SO THAT I can plan a trip for the day!
 ## Acceptance Criteria
 
 ```
-GIVEN a Nationial Park
+GIVEN a National Park I'm interested in
 
-WHEN you search for Nationial Park in the area it will filter with details 
+WHEN I search for the National Park in the input area
 
-THEN I am presented with near by park info, hikes and weather for area
+THEN I am presented with park info and nearby hikes and weather
+
+WHEN I have already searched for a National Park
+
+THEN I am presented with a history of parks searched in a sidebar on the lefthand side of the page
+
+WHEN I click on a previously searched park tile
+
+THEN the information loads as if it were searched in the input section
 
 
 ```
