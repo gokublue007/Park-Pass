@@ -1,4 +1,5 @@
 var inputTextBox = $(".input");
+var inputDiv = $('.input-div')
 var searchParkButtonEl = $("#searchParkButton");
 var clearSavedParksButtonEl = $("#clearSavedParksButton");
 var parkCodeList = [];
@@ -341,3 +342,4 @@ tabs.forEach((tab) => {
 
 clearSavedParksButtonEl.on("click", clearSavedParks);
 searchParkButtonEl.on("click", runParkSearch);
+inputDiv.on("submit", runParkSearch);
