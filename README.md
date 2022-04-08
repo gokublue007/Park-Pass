@@ -24,9 +24,9 @@ Our task was to create a website with a SEO to every single National Park in the
 ```
 AS A hiker
 
-I WANT to see what trails are around me 
+I WANT to see what park info, trials, and weather are around me 
 
-SO THAT I can plan a hike for the day!
+SO THAT I can plan a trip for the day!
 
 ```
 
@@ -34,11 +34,11 @@ SO THAT I can plan a hike for the day!
 ## Acceptance Criteria
 
 ```
-GIVEN a starting location 
+GIVEN a Nationial Park
 
-WHEN I search for trails in my area filtered with details 
+WHEN you search for Nationial Park in the area it will filter with details 
 
-THEN I am presented with trails to hike in my area
+THEN I am presented with near by park info, hikes and weather for area
 
 
 ```
