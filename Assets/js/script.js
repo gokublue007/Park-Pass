@@ -175,7 +175,7 @@ function pullParkData() {
 
     // add national park fee to display
     var feeDisplayElement = $("<p>");
-    feeDisplayElement.html("Entrance Fee: " + parkEntryFee);
+    feeDisplayElement.html("Entrance Fee: $ " + parkEntryFee);
     parkInfoContent.append(feeDisplayElement);
 
     var parkFullName = response.data[0].fullName;
