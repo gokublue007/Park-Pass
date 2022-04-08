@@ -66,6 +66,9 @@ THEN the information loads as if it were searched in the input section
 - CSS
 - JavaScript
 - Bulma
-- Moment
+- Moment API
+- OpenWeather API
+- NPS API
+- Google Maps API
 
 [Back To The Top](#read-me-template)
