@@ -299,6 +299,7 @@ function runParkSearch(event) {
   chosenPark = inputTextBox.val();
   findParkCode(chosenPark);
   pullParkData();
+  inputTextBox.val('');
 }
 
 function savedParkSearch(event) {
