@@ -107,15 +107,17 @@ function displayWeatherData(data) {
   var weatherHumidityEl = $("<p>");
   var weatherDateEl = $("<p>");
 
+  weatherSection.attr("class", "weatherCard");
+
   weatherHeader.text(currentCity);
   weatherDateEl.text(currentDate);
   weatherImage.attr(
     "src",
     `http://openweathermap.org/img/wn/${currentIcon}@2x.png`
   );
-  weatherTempEl.text(`Temp: ${currentTemp}`);
-  weatherWindEl.text(`Wind: ${currentWind}`);
-  weatherHumidityEl.text(`Humidity: ${currentHumidity}`);
+  weatherTempEl.text("Temp: " + currentTemp + String.fromCharCode(176) + "F");
+  weatherWindEl.text("Wind: " + currentWind + " MPH");
+  weatherHumidityEl.text("Humditiy: " + currentHumidity + "%");
   weatherSection.append(weatherHeader);
   weatherSection.append(weatherDateEl);
   weatherSection.append(weatherImage);
