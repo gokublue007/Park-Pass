@@ -126,7 +126,7 @@ function displayWeatherData(data) {
 }
 
 function pullWeatherData(city) {
-  var currentWeatherApi = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${weatherApiKey}`;
+  var currentWeatherApi = `https://api.openweathermap.org/data/2.5/weather?zip=${city}&appid=${weatherApiKey}&units=imperial`;
   fetch(currentWeatherApi)
     .then(function (response) {
       return response.json();
@@ -183,11 +183,10 @@ function pullParkData() {
     populateSavedContent();
     hikingTrails(parkLatitude, parkLongitude);
 
-    parkCity = response.data[0].addresses[0].city;
+    parkCity = response.data[0].addresses[0].postalCode;
     pullWeatherData(parkCity);
   });
 }
-
 // Function pulls data from NPS API and stores park names and codes to be used later
 function getParkNamesCodes() {
   var allParksURL = `https://developer.nps.gov/api/v1/parks?limit=500&api_key=${NPSApiKey}`;
