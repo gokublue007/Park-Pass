@@ -237,7 +237,7 @@ function loadMap(latInt, lngInt) {
     location: park,
     radius: "500",
     query: "hiking trail",
-    fields: ["name", "formatted_address"],
+    fields: ["name", "formatted_address", "place_id"],
   };
 
   service = new google.maps.places.PlacesService(map);
@@ -272,7 +272,7 @@ function createMarker(place) {
     const trailLink = document.createElement("a");
     trailLink.setAttribute(
       "href",
-      "https://www.google.com/maps/search/?api=1&query=" + place.name
+      "https://www.google.com/maps/search/?api=1&query=" + place.name + "&query_place_id=" + place.place_id
     );
     trailLink.setAttribute("target", "_blank");
     trailLink.setAttribute("jstcache", "6");
