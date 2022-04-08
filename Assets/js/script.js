@@ -333,3 +333,4 @@ tabs.forEach((tab) => {
 clearSavedParksButtonEl.on("click", clearSavedParks);
 searchParkButtonEl.on("click", runParkSearch);
 inputDiv.on("submit", runParkSearch);
+$(".savedSearch").on("click", savedParkSearch);
