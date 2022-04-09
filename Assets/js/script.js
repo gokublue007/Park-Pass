@@ -114,7 +114,7 @@ function displayWeatherData(data) {
   );
   weatherTempEl.text("Temp: " + currentTemp + String.fromCharCode(176) + "F");
   weatherWindEl.text("Wind: " + currentWind + " MPH");
-  weatherHumidityEl.text("Humditiy: " + currentHumidity + "%");
+  weatherHumidityEl.text("Humidity: " + currentHumidity + "%");
   weatherDateEl.attr("class", "backGround");
   weatherSection.append(weatherHeader);
   weatherSection.append(weatherDateEl);
