@@ -144,6 +144,7 @@ function pullParkData() {
     url: parkPullURL,
     method: "GET",
   }).then(function (response) {
+    console.log(response);
     // Set entryFee variable to cost of entry if > 0, to text "Free Fee Park" if there is no entry fee
     if (response.data[0].entranceFees[0].cost == 0) {
       parkEntryFee = "Entrance to this park is free!";
@@ -177,6 +178,11 @@ function pullParkData() {
     var feeDisplayElement = $("<p>");
     feeDisplayElement.html("Entrance Fee: " + parkEntryFee);
     parkInfoContent.append(feeDisplayElement);
+
+    // add State park is located
+    var stateElement = $("<p>");
+    stateElement.text("State: " + response.data[0].states);
+    parkInfoContent.append(stateElement);
 
     var parkFullName = response.data[0].fullName;
     saveParkName(parkFullName);
@@ -223,6 +229,7 @@ function loadMap(latInt, lngInt) {
     fullscreenControl: true,
     streetViewControl: true,
     zoomControl: true,
+    mapTypeId: "terrain",
   });
 
   var request = {
@@ -255,6 +262,8 @@ function createMarker(place) {
 
   // Event listener to display trail name
   google.maps.event.addListener(marker, "click", () => {
+    map.setCenter(place.geometry.location);
+
     const content = document.createElement("div");
     const nameEl = document.createElement("h4");
 

@@ -45,12 +45,14 @@ body {
   max-height: 350px;
   width: 100%;
   object-fit: cover;
+  border-radius: .5rem;
 }
 
 .imgTwo {
   max-height: 350px;
   width: 100%;
   object-fit: cover;
+  border-radius: .5rem;
 }
 
 .wrapButtonText {
@@ -70,6 +72,15 @@ color: white;
 padding: 2%;
 }
 
+.footer-link {
+  color: #c56c39;
+  text-decoration: underline;
+}
+
+.footer-link:hover {
+  color: #d79975;
+}
+
 .weatherCard {
   padding: 20px 0 0 0;
   color: white ;
@@ -81,6 +92,7 @@ padding: 2%;
   height: auto;
   width: auto;
   font-family: 'Times New Roman', Times, serif;
+  border-radius: .5rem;
 }
 
 .backGround {
